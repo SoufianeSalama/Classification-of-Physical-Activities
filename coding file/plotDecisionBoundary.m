@@ -10,6 +10,8 @@ function plotDecisionBoundary(theta, X, y)
 
 % Plot Data
 plotData(X(:,2:3), y);
+%X(:,2:3) pak de tweede en derde kolom van X (x2 en x3)
+
 hold on
 
 if size(X, 2) <= 3
@@ -34,7 +36,7 @@ else
     % Evaluate z = theta*x over the grid
     for i = 1:length(u)
         for j = 1:length(v)
-            z(i,j) = mapFeature1(u(i), v(j))*theta;
+            z(i,j) = mapFeature(u(i), v(j))*theta;
         end
     end
     z = z'; % important to transpose z before calling contour
@@ -46,11 +48,11 @@ end
 % Put some labels 
 hold on;
 % Labels and Legend
-xlabel('Feature1')
-ylabel('Feature2')
+xlabel('Feature 1')
+ylabel('Feature 2')
 
 % Specified in plot order
-%legend('Positive-train', 'Negative-train','Decision boundary');
+legend('Positive-train', 'Negative-train','Decision boundary');
 hold off;
 
 end
