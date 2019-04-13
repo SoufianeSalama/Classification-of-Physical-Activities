@@ -13,8 +13,8 @@ figure; hold on;
 %
 
 
-posactiviteit = find(y==4);
-negactiviteit = find(y~=4);
+posactiviteit = find(y==1);
+negactiviteit = find(y==0);
 
 plot(X(negactiviteit, 1), X(negactiviteit, 2), 'rx', 'Markersize', 7)
 plot(X(posactiviteit, 1), X(posactiviteit, 2), 'g+', 'Markersize', 7)

@@ -10,8 +10,6 @@ function plotDecisionBoundary(theta, X, y)
 
 % Plot Data
 plotData(X(:,2:3), y);
-%X(:,2:3) pak de tweede en derde kolom van X (x2 en x3)
-
 hold on
 
 if size(X, 2) <= 3
@@ -44,7 +42,7 @@ else
     % Plot z = 0
     % Notice you need to specify the range [0, 0]
     contour(u, v, z, [0, 0], 'LineWidth', 2)
-end
+%  end
 % Put some labels 
 hold on;
 % Labels and Legend
