@@ -1,4 +1,5 @@
 function plotDecisionBoundary(theta, X, y)
+%function plotDecisionBoundary(theta, X1, X2, y)
 %PLOTDECISIONBOUNDARY Plots the data points X and y into a new figure with
 %the decision boundary defined by theta
 %   PLOTDECISIONBOUNDARY(theta, X,y) plots the data points with + for the 
@@ -9,7 +10,11 @@ function plotDecisionBoundary(theta, X, y)
 %   2) MxN, N>3 matrix, where the first column is all-ones
 
 % Plot Data
+%disp(X)
 plotData(X(:,2:3), y);
+% X = [X1,X2];
+% 
+% plotData(X, y);
 hold on
 
 if size(X, 2) <= 3

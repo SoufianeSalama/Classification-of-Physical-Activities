@@ -118,7 +118,7 @@ Xvalidation = mapFeature(Xvalidation(:,1), Xvalidation(:,2));
 
 %Optimize Lambda (3^(-10) tot 3^(10)) with the validation dataset
 herhalingen = 200;
-lambda = logspace(-10, 10, herhalingen);
+lambda = logspace(-10, 3^(10), herhalingen);
 %lambda = linspace(3^(-10), 3^(10), herhalingen);
 f1scoreMatrixTraining = [];
 f1scoreMatrixCrossValidation=[];

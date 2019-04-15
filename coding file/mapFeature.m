@@ -9,12 +9,12 @@ function out = mapFeature(X1,X2)
 %   degree is the degree of the polynomial features, not only quadratic
 
 
-degree = 4;
+degree = 6;
 % size(X);
 % X1 = X(:,1);
 % X2 = X(:,2);
 
-out = ones(size(X1(:,1)));
+out = ones(size(X1(:,1))); %-> word al in het begin van 'exercise' gedaan
 
 for i = 1:degree
     for j = 0:i
