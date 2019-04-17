@@ -11,11 +11,12 @@ function plotDecisionBoundary(theta, X, y)
 
 % Plot Data
 %disp(X)
+
 plotData(X(:,2:3), y);
 % X = [X1,X2];
 % 
 % plotData(X, y);
-hold on
+hold on;
 
 if size(X, 2) <= 3
     % Only need 2 points to define a line, so choose two endpoints
@@ -29,7 +30,8 @@ if size(X, 2) <= 3
     
     % Legend, specific for the exercise
     legend('Positive-train', 'Negative-train', 'Decision Boundary')
-    axis([-2,2,-2,2])
+    %axis([-2,2,-2,2])
+    axis([-6,6,-3,7])
 else
     % Here is the grid range
     u = linspace(-1, 1.5, 50);
@@ -47,12 +49,11 @@ else
     % Plot z = 0
     % Notice you need to specify the range [0, 0]
     contour(u, v, z, [0, 0], 'LineWidth', 2)
+    axis([-5,5,-5,5])
 %  end
 % Put some labels 
 hold on;
 % Labels and Legend
-xlabel('Feature 1')
-ylabel('Feature 2')
 
 % Specified in plot order
 legend('Positive-train', 'Negative-train','Decision boundary');
