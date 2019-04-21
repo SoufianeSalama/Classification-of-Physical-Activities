@@ -29,13 +29,16 @@ if size(X, 2) <= 3
     plot(plot_x, plot_y)
     
     % Legend, specific for the exercise
-    legend('Positive-train', 'Negative-train', 'Decision Boundary')
-    %axis([-2,2,-2,2])
-    axis([-6,6,-3,7])
+    legend('Negative-train','Positive-train', 'Decision boundary');
+    %axis([-3,3,-2,2])
+    axis([-6,6,-3,2])
 else
     % Here is the grid range
-    u = linspace(-1, 1.5, 50);
-    v = linspace(-1, 1.5, 50);
+%     u = linspace(-1, 1.5, 50);
+%     v = linspace(-1, 1.5, 50);
+    
+    u = linspace(-3, 3, 50);
+    v = linspace(-3, 3, 50);
 
     z = zeros(length(u), length(v));
     % Evaluate z = theta*x over the grid
@@ -49,14 +52,14 @@ else
     % Plot z = 0
     % Notice you need to specify the range [0, 0]
     contour(u, v, z, [0, 0], 'LineWidth', 2)
-    axis([-5,5,-5,5])
+    axis([-2,3,-3,4])
 %  end
 % Put some labels 
 hold on;
 % Labels and Legend
 
 % Specified in plot order
-legend('Positive-train', 'Negative-train','Decision boundary');
+legend('Negative-train','Positive-train', 'Decision boundary');
 hold off;
 
 end

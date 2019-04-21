@@ -6,7 +6,7 @@ confusionresult = confusionmat(y, predictions);
 % figure; 
 % confusionchart(y, predictions);
 % title('Predicted vs True (Validation Set)');
-%hold off;
+
 
 % Foute berekening
 % truepositive = confusionresult(2:2,2);
