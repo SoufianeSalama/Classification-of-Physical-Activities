@@ -145,8 +145,9 @@ initial_theta = zeros(size(Xtraining, 2), 1);
 % legend('Training', 'Validation');
 % hold off;
 % 
-lambda = 0.04863;
-options = optimset('GradObj', 'on', 'MaxIter', 100);
+lambda = 0.04863; %lambda waarde die de hoogste F1 score geeft.
+lambda = 1;
+options = optimset('GradObj', 'on', 'MaxIter', 200);
 [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtraining, ytraining, lambda )), initial_theta, options);
     
 % % % Plot the Cross Validation dataset and the lineair decision boundery
@@ -204,7 +205,7 @@ pause;
 %% 2.4.2 Construct a non-linear classifier with the 8 features
 % linear classifier -> de features mappen naar bv 6de graad
 XallfeaturesTraining = XallfeaturesTrainingGlobal;
-XallfeaturesValidation = XallfeaturesValidationGlobal;
+XallfeaturesValidation(:,1) = XallfeaturesValidationGlobal;
 
 XallfeaturesTraining(:,1) = [];
 XallfeaturesValidation(:,1) = [];
@@ -314,7 +315,7 @@ initial_theta = zeros(size(Xtraining, 2), 1);
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 
 XallfeaturesTraining = XallfeaturesTrainingGlobal;
-XallfeaturesValidation = XallfeaturesValidationGlobal;
+XallfeaturesValidation(:,1) = XallfeaturesValidationGlobal;
 
 XallfeaturesTraining(:,1) = [];
 XallfeaturesValidation(:,1) = [];

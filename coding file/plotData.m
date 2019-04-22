@@ -19,12 +19,12 @@ negactiviteit = find(y==0);
 plot(X(negactiviteit, 1), X(negactiviteit, 2), 'rx', 'Markersize', 7)
 plot(X(posactiviteit, 1), X(posactiviteit, 2), 'g+', 'Markersize', 7)
 
-title('Ex1: Feature selection (Before Normalization)');
-% xlabel('Feature 2: Max value of the acceleration at the x-axis of gravity acceleration');
-% ylabel('Feature 6: Min value of the acceleration at the y-axis of gravity acceleration');
+title('Ex1: Feature selection');
+xlabel('Feature 2: Max value of the acceleration at the x-axis of gravity acceleration');
+ylabel('Feature 6: Min value of the acceleration at the y-axis of gravity acceleration');
 
-xlabel('Feature 1: Max value of the acceleration at the x-axis of body acceleration');
-ylabel('Feature 8: Signal magnitude area of the 3-axis of gravity acceleration.');
+% xlabel('Feature 1: Max value of the acceleration at the x-axis of body acceleration');
+% ylabel('Feature 8: Signal magnitude area of the 3-axis of gravity acceleration.');
 hold off;
 
 end

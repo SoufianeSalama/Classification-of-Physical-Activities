@@ -1,5 +1,5 @@
 %function out = mapFeature(X, pair, degree)
-function out = mapFeature(X1,X2)
+function out = mapFeature(X1,X2, degree)
 % MAPFEATURE Feature mapping function to polynomial features
 %
 %   MAPFEATURE(X1, X2) maps the two input features
@@ -9,7 +9,7 @@ function out = mapFeature(X1,X2)
 %   degree is the degree of the polynomial features, not only quadratic
 
 
-degree = 6;
+%degree = 6;
 % size(X);
 % X1 = X(:,1);
 % X2 = X(:,2);

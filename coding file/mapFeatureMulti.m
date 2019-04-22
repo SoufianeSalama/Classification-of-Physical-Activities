@@ -1,4 +1,4 @@
-function out = mapFeatureMulti(X)
+function out = mapFeatureMulti(X,degree)
 % X
 % degree = 2;
 % [m,n] = size(X);
@@ -19,7 +19,7 @@ function out = mapFeatureMulti(X)
 % end
 
 
-degree = 2;
+%degree = 2;
 [m,n] = size(X);
 
 stacked = zeros(0, n); %this will collect all the coefficients...    
