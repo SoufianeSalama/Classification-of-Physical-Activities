@@ -74,12 +74,12 @@ ytesting = y1(7211:10299);
 % Normalizing features is done in the beginning (mean normalization)
 
 % Use training dataset to train the model (with lambda = 0)
-% lambda = 0;
-% initial_theta = zeros(size(XtrainingGlobal, 2), 1);
-% options = optimset('GradObj', 'on', 'MaxIter', 100);
-% [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, XtrainingGlobal , ytraining, lambda)), initial_theta, options);
-% fprintf('Ex2.2: Cost with FMINUNC (TRAINING DATASET) with lambda=0: %f\n', J);
-% 
+lambda = 0;
+initial_theta = zeros(size(XtrainingGlobal, 2), 1);
+options = optimset('GradObj', 'on', 'MaxIter', 100);
+[theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, XtrainingGlobal , ytraining, lambda)), initial_theta, options);
+fprintf('Ex2.2: Cost with FMINUNC (TRAINING DATASET) with lambda=0: %f\n', J);
+
 % % Use validation dataset to test the model
 % [cost, grad] = costFunctionReg(theta, XvalidationGlobal , yvalidation, lambda);
 % fprintf('Ex2.2: Cost with FMINUNC (VALIDATION DATASET) with theta from TRAINING: %f\n', J);
@@ -90,21 +90,21 @@ ytesting = y1(7211:10299);
 % hold off;
 % 
 % % Plot the Cross Validation dataset and the lineair decision boundery
-% plotDecisionBoundary(theta, XvalidationGlobal , yvalidation);
-% title('Ex2.2: Cross Validation Set (lambda=0)');
-% hold off;
-% 
-% %Calculate F1 score -> https://www.coursera.org/learn/machine-learning/lecture/CuONQ/trading-off-precision-and-recall
-% % met behulp van confusionmat en https://en.wikipedia.org/wiki/F1_score
-% % F1Score of training set
-% f1scoreTraining = f1score(theta, XtrainingGlobal , ytraining);
-% fprintf('Ex2.2: F1 Score of the Training Set (Linear): %f\n', f1scoreTraining);
-% % F1Score of cross validation set
-% f1scoreValidation = f1score(theta, XvalidationGlobal , yvalidation);
-% fprintf('Ex2.2: F1 Score of the Validation Set (Linear): %f\n', f1scoreValidation);
-% 
-% fprintf('Program paused. Press enter to continue.\n');
-% pause;
+plotDecisionBoundary(theta, XvalidationGlobal , yvalidation);
+title('Ex2.2: Cross Validation Set (lambda=0)');
+hold off;
+
+%Calculate F1 score -> https://www.coursera.org/learn/machine-learning/lecture/CuONQ/trading-off-precision-and-recall
+% met behulp van confusionmat en https://en.wikipedia.org/wiki/F1_score
+% F1Score of training set
+f1scoreTraining = f1score(theta, XtrainingGlobal , ytraining);
+fprintf('Ex2.2: F1 Score of the Training Set (Linear): %f\n', f1scoreTraining);
+% F1Score of cross validation set
+f1scoreValidation = f1score(theta, XvalidationGlobal , yvalidation);
+fprintf('Ex2.2: F1 Score of the Validation Set (Linear): %f\n', f1scoreValidation);
+
+fprintf('Program paused. Press enter to continue.\n');
+pause;
 
 %% 2.3 Polynomial features from 2 features
 
@@ -119,32 +119,32 @@ Xvalidation(:,1) = [];
 Xtraining = mapFeature(Xtraining(:,1), Xtraining(:,2), degree);
 Xvalidation = mapFeature(Xvalidation(:,1), Xvalidation(:,2), degree);
 % 
-% 
-% %Optimize Lambda (3^(-10) tot 3^(10)) with the validation dataset
+
+%Optimize Lambda (3^(-10) tot 3^(10)) with the validation dataset
 herhalingen = 100;
-lambda = logspace(-10, 10, herhalingen);
+lambda = logspace(-4.77, 4.77, herhalingen);
 %lambda = linspace(3^(-10), 3^(10), herhalingen);
 f1scoreMatrixTraining = [];
 f1scoreMatrixCrossValidation=[];
 initial_theta = zeros(size(Xtraining, 2), 1);
-% for i=1:herhalingen
-%     options = optimset('GradObj', 'on', 'MaxIter', 100);
-%     [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtraining, ytraining, lambda(i) )), initial_theta, options);
-%     f1scoreMatrixTraining(:,end+1) = f1score(theta, Xtraining, ytraining);
-%     f1scoreMatrixCrossValidation(:,end+1) = f1score(theta, Xvalidation, yvalidation);
-% end
-% 
-% 
-% figure; hold on;
-% plot(lambda, f1scoreMatrixTraining);
-% plot(lambda, f1scoreMatrixCrossValidation);
-% set(gca, 'XScale', 'log');
-% title('2.3: 2 features poly (6th degree)');
-% xlabel('Lambda');
-% ylabel('F1 Score');
-% legend('Training', 'Validation');
-% hold off;
-% 
+for i=1:herhalingen
+    options = optimset('GradObj', 'on', 'MaxIter', 100);
+    [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtraining, ytraining, lambda(i) )), initial_theta, options);
+    f1scoreMatrixTraining(:,end+1) = f1score(theta, Xtraining, ytraining);
+    f1scoreMatrixCrossValidation(:,end+1) = f1score(theta, Xvalidation, yvalidation);
+end
+
+
+figure; hold on;
+plot(lambda, f1scoreMatrixTraining);
+plot(lambda, f1scoreMatrixCrossValidation);
+set(gca, 'XScale', 'log');
+title('2.3: 2 features poly (6th degree)');
+xlabel('Lambda');
+ylabel('F1 Score');
+legend('Training', 'Validation');
+hold off;
+
 lambda = 0.04863;
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtraining, ytraining, lambda )), initial_theta, options);
@@ -237,11 +237,11 @@ hold off;
 
 % F1 score tov aantal training voorbeelden
 lambda = 0.01987; %lambda waarde die de hoogste F1 score geeft voor klasse 1
-%lambda = 78.27; %lambda waarde die de hoogste F1 score geeft voor klasse 4
-
+lambda = 78.27; %lambda waarde die de hoogste F1 score geeft voor klasse 4
+lambda = 0.1;
 options = optimset('GradObj', 'on', 'MaxIter', 100);
-[theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, XallfeaturesTraining, ytraining, lambda )), initial_theta, options);
-  
+% [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, XallfeaturesTraining, ytraining, lambda )), initial_theta, options);
+%   
 
 f1scoreMatrixTraining = [];
 f1scoreMatrixCrossValidation = [];
@@ -252,6 +252,8 @@ i = 150 ;
 
 while( i< m) 
     aantal(:,end+1) = i ;
+   [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, XallfeaturesTraining(1:i, : ), ytraining(1:i, : ), lambda )), initial_theta, options);
+  
     f1scoreMatrixTraining(:,end+1) = f1score(theta, XallfeaturesTraining(1:i, : ), ytraining(1:i, :));
     f1scoreMatrixCrossValidation(:,end+1) = f1score(theta, XallfeaturesValidation(1:i, : ), yvalidation(1:i, :));
     i = i +100 ;
@@ -266,11 +268,11 @@ legend('Training','Validation');
 
 %% Extra: Plotting Cost in function of the degree of polynomial for exercise 2.3 (VARIANCE VS BIAS)
 i = 1 ;
-max_degree = 10;
+max_degree = 6;
 degrees = [];
 error_train = [];
 error_val = [];
-lambda = 10000; % hier was een piek voor de F1 score
+lambda = 1;
 initial_theta = zeros(size(Xtraining, 2), 1);
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 
@@ -285,11 +287,11 @@ while(i<=max_degree)
     Xvalidation_temp = [];
     Xtraining_temp = mapFeature(Xtraining(:,1), Xtraining(:,2),i);
     Xvalidation_temp = mapFeature(Xvalidation(:,1), Xvalidation(:,2),i);
-    initial_theta = zeros(size(Xtraining, 2), 1);
-    [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtraining, ytraining, lambda)), initial_theta, options);
+    initial_theta = zeros(size(Xtraining_temp, 2), 1);
+    [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtraining_temp, ytraining, lambda)), initial_theta, options);
     
-    [error_train(:,end+1), grad] = costFunctionReg(theta, Xtraining(1:i, :), ytraining(1:i, :), 0);
-    [error_val(:,end+1), grad] = costFunctionReg(theta, Xvalidation(1:i, :), yvalidation(1:i, :), 0);
+    [error_train(:,end+1), grad] = costFunctionReg(theta, Xtraining_temp, ytraining, 0);
+    [error_val(:,end+1), grad] = costFunctionReg(theta, Xvalidation_temp, yvalidation, 0);
 
     i = i+1 ;
 end
@@ -297,7 +299,7 @@ end
 figure; hold on;
 plot(degrees, error_train);
 plot(degrees, error_val);
-title('Variance VS Bias (lambda=100)');
+title('Variance VS Bias (lambda=1)');
 xlabel('Degree of polynomial');
 ylabel('Error Cost(theta)');
 legend('Training','Validation');
@@ -308,8 +310,7 @@ max_degree = 5;
 degrees = [];
 error_train = [];
 error_val = [];
-%lambda = 0.01987; % Max F1score
-lambda = 50;
+lambda = 1;
 initial_theta = zeros(size(Xtraining, 2), 1);
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 
@@ -326,8 +327,9 @@ while(i<=max_degree)
     initial_theta = zeros(size(Xtraining, 2), 1);
     [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtraining, ytraining, lambda)), initial_theta, options);
 
-    [error_train(:,end+1), grad] = costFunctionReg(theta, Xtraining(1:i, :), ytraining(1:i, :), 0);
-    [error_val(:,end+1), grad] = costFunctionReg(theta, Xvalidation(1:i, :), yvalidation(1:i, :), 0);
+    [error_train(:,end+1), grad] = costFunctionReg(theta, Xtraining, ytraining, 0);
+    [error_val(:,end+1), grad] = costFunctionReg(theta, Xvalidation, yvalidation, 0);
+    
     
     i = i+1;
 end
@@ -335,7 +337,7 @@ end
 figure; hold on;
 plot(degrees, error_train);
 plot(degrees, error_val);
-title('Variance VS Bias Poly 8 Features (lambda=50)');
+title('Variance VS Bias Poly 8 Features (lambda=1)');
 xlabel('Degree of polynomial');
 ylabel('Error Cost(theta)');
 legend('Training','Validation');
